@@ -36,6 +36,10 @@ def user_login(request):
         return HttpResponseRedirect("/")
 
 def user_register_view(request):
+    name = request.GET.get("name")
+    email = request.GET.get("email")
+    password = request.GET.get("password")
+    User.objects.create(username=name, email=email, password=password)
     return render_to_response("user_register.html")
 
 def user_register(request):
