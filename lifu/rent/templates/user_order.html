@@ -1,0 +1,147 @@
+<!doctype html>
+<!-- 依照源GFashion网站为原型,以自己的的方式实现 -->
+<html>
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>礼服租赁系统</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'user_index/css/reset.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'user_index/css/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'user_index/css/font.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'user_index/css/vice-index.css'%}">
+    <link rel="icon" type="image/png" href="{% static 'admin/assets/i/favicon.png' %}">
+    <link rel="apple-touch-icon-precomposed" href="{% static 'admin/assets/i/app-icon72x72@2x.png' %}">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+    <link rel="stylesheet" href="{% static 'admin/assets/css/amazeui.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'admin/assets/css/admin.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/assets/css/app.css' %}">
+    <script src="{% static 'admin/assets/js/echarts.min.js' %}"></script>
+</head>
+
+<body>
+<!-- 顶部条开始 -->
+<div class="headerTop">
+    <!-- 左侧 -->
+    <div class="container clearfix">
+        <div class="left">
+            <!-- 字体图标 -->
+            <div class="iconOuter ">
+                <div class="icon-quill iconInner"></div>
+            </div>
+            <div class="vistorCount">+444 (100) 1234</div>
+            <div class="openTime">(Mon- Fri: 09.00 - 21.00)</div>
+        </div>
+        <!-- 左侧结束 -->
+        <!-- 搜索框 -->
+        <!-- 搜索框 -->
+    </div>
+</div>
+<!-- 顶部条结束 -->
+
+<!-- 顶部logo+导航开始 -->
+<nav class="navWrapper">
+    <div class="navLogo">
+        <a href="#"><img src="{% static 'user_index/img/logo.png' %}" alt=""></a>
+    </div>
+    <!-- 账户相关 -->
+    <ul class="navAccount">
+        <li>
+            <ul>
+                {% if username == False %}
+                <li><a id="login" href="/user_login_view">登录</a></li>
+                <li><a href="/user_register_view">注册</a></li>
+                {% else %}
+                <li><a id="welcome" href="javascript:;">欢迎您: {{ username }}</a></li>
+                <li><a href="/">退出</a></li>
+                {% endif %}
+            </ul>
+        </li>
+    </ul>
+    <!-- 登录login -->
+    <iframe src="" frameborder="0"></iframe>
+    <!-- /登录login -->
+
+    <!-- 导航菜单 -->
+    <div class="menu">
+        <ul>
+            <li><a href="/user_address">地址</a></li>
+            <li><a href="/user_rent_flow">租赁流程</a></li>
+            <li><a href="/user_info_view">个人信息</a></li>
+            <li><a href="/user_index/{{username}}">首页</a></li>
+        </ul>
+    </div>
+</nav>
+<br>
+<br>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <section class="am-panel am-panel-warning">
+                <header class="am-panel-hd">
+                    <h3 class="am-panel-title">
+                        <center>确认订单</center>
+                    </h3>
+                </header>
+                <div class="am-panel-bd">
+                    <form class="am-form" action="/user_order">
+                        <center>
+                            <fieldset>
+                                <div class="am-form-group am-form-success am-form-icon am-form-feedback">
+                                    <section class="am-panel am-panel-success">
+                                        <div class="am-panel-bd">
+                                            <center>
+                                                <img src="/static/{{ cloth_obj.picture }}" width="260" height="380"
+                                                     class="am-img-responsive" alt=""/>
+                                                <br>
+                                                <br>
+                                                &nbsp &nbsp &nbsp 服装ID：{{ cloth_obj.id }} &nbsp &nbsp 服装名：{{ cloth_obj.clothName }}
+                                                <br>
+                                                租赁价格：{{ cloth_obj.rent_price }} &nbsp &nbsp 类型：{{ cloth_obj.type }} &nbsp &nbsp 剩余数量：{{ cloth_obj.count }}
+                                            </center>
+                                        </div>
+                                    </section>
+                                </div>
+
+                                <div class="am-form-group am-form-success am-form-icon am-form-feedback">
+                                    <input type="text" required name="phone" class="am-round am-form-field"
+                                           id="doc-ipt-success"
+                                           style="width:50%;" placeholder="输入手机号">
+                                </div>
+
+                                <div class="am-form-group am-form-group am-form-warning">
+                                    <input type="date" required name="datetime" class="am-round am-form-field"
+                                           id="doc-ipt-warning"
+                                           style="width:50%;" placeholder="请选择时间">
+                                </div>
+                                <div class="am-form-group am-form-group am-form-error">
+                                    <input type="text" required name="address" class="am-round am-form-field"
+                                           id="doc-ipt-error" style="width:50%;" placeholder="请输入地址">
+                                </div>
+                                <p>
+                                    <button type="submit" name="id" value="{{ cloth_obj.id }}"
+                                            class="am-btn am-btn-warning">提交
+                                    </button>
+                                </p>
+                            </fieldset>
+
+                        </center>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+</body>
+<!-- /footer -->
+<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="{% static 'admin/assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'admin/assets/js/amazeui.min.js' %}"></script>
+<script src="{% static 'admin/assets/js/iscroll.js' %}"></script>
+<script src="{% static 'admin/assets/js/app.js' %}"></script>
+<link rel="stylesheet" href="{% static 'index/amazeui.min.css' %}"/>
+<script type="text/javascript" src="{% static 'user_index/js/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'user_index/js/index.js' %}"></script>
+</html>

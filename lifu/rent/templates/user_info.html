@@ -1,0 +1,368 @@
+<!doctype html>
+<!-- 依照源GFashion网站为原型,以自己的的方式实现 -->
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'user_index/css/reset.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'user_index/css/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'user_index/css/font.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'user_index/css/vice-index.css'%}">
+    <link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.css">
+    <script src="http://cdn.amazeui.org/amazeui/2.7.2/js/amazeui.min.js"></script>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- 顶部条开始 -->
+<div class="headerTop">
+    <!-- 左侧 -->
+    <div class="container clearfix">
+        <div class="left">
+            <!-- 字体图标 -->
+            <div class="iconOuter ">
+                <div class="icon-quill iconInner"></div>
+            </div>
+            <div class="vistorCount">+444 (100) 1234</div>
+            <div class="openTime">(Mon- Fri: 09.00 - 21.00)</div>
+        </div>
+        <!-- 左侧结束 -->
+        <!-- 搜索框 -->
+        <div class="right">
+            <!-- 购物车 -->
+            <!-- ////////////////////////////2016.10.20 -->
+        </div>
+        <!-- 搜索框 -->
+    </div>
+</div><!-- 顶部logo+导航开始 -->
+<nav class="navWrapper">
+    <div class="navLogo">
+        <a href="#"><img src="{% static 'user_index/img/logo.png' %}" alt=""></a>
+    </div>
+    <!-- 账户相关 -->
+    <ul class="navAccount">
+        <li>
+            <ul>
+                {% if username == False %}
+                <!--功能没实现-->
+                <li><a id="login" href="/user_login_view">登录</a></li>
+                <li><a href="/user_register_view">注册</a></li>
+                {% else %}
+                <li><a id="welcome" href="javascript:;">欢迎您: {{ username }}</a></li>
+                <li><a href="/">退出</a></li>
+                {% endif %}
+            </ul>
+        </li>
+    </ul>
+    <!-- 登录login -->
+    <iframe src="" frameborder="0"></iframe>
+    <!-- /登录login -->
+
+    <!-- 导航菜单 -->
+    <div class="menu">
+        <ul>
+            <li><a href="/user_address">地址</a></li>
+            <li><a href="/user_rent_flow">租赁流程</a></li>
+            <li><a href="/user_info_view">个人信息</a></li>
+            <li><a href="/user_index/{{username}}">首页</a></li>
+        </ul>
+    </div>
+</nav>
+
+<style>
+    .nav-tabs > li {
+        float: none;
+        display: inline-block;
+        zoom: 1;
+    }
+
+    .nav-tabs {
+        text-align: center;
+    }
+</style>
+
+<div class="modal fade" id="confModifyModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span>
+                </button>
+                <center><h4 class="modal-title" id="examplemodallabel">修改预约</h4></center>
+            </div>
+            <div class="modal-body">
+                <form role="form" method='get' action='/user_update_order'>
+                    <div class="form-group">
+                        <label for="clothName_id" class="control-label">服装名称:</label>
+                        <textarea id="clothName_id" class="form-control" name="clothName" readonly="readonly"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="cus_name_id" class="control-label">用户名:</label>
+                        <textarea id="cus_name_id" class="form-control" name="cusName" disabled="disabled"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="money_id" class="control-label">服装价格:</label>
+                        <textarea id="money_id" class="form-control" name="money" disabled="disabled"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone_id" class="control-label">手机号:</label>
+                        <textarea id="phone_id" class="form-control" name="phone"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="rent_time_id" class="control-label">租赁时间:</label>
+                        <textarea id="rent_time_id" class="form-control" name="rent_time" disabled="disabled"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="order_time_id" class="control-label">下单时间:</label>
+                        <textarea id="order_time_id" class="form-control" name="order_time" disabled="disabled"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="address_id" class="control-label">地址:</label>
+                        <textarea id="address_id" class="form-control" name="address" disabled="disabled"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">保存</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="tabbable" id="tabs-912975">
+                <ul class="nav nav-tabs">
+                    <li>
+                        <a href="#panel-1" data-toggle="tab">用户订单信息</a>
+                    </li>
+                    <li>
+                        <a href="#panel-2" data-toggle="tab">查看用户信息</a>
+                    </li>
+                    <li>
+                        <a href="#panel-3" data-toggle="tab">修改用户密码</a>
+                    </li>
+                    <li>
+                        <a href="#panel-4" data-toggle="tab">意见反馈</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane" id="panel-1">
+                        <div class="container">
+                            <div class="row clearfix">
+                                <div class="col-md-12 column">
+                                    <div class="panel panel-danger">
+                                        <div class="panel-body">
+                                            <br>
+                                            <br>
+
+                                            <table class="table table-hover table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    <th>用户名</th>
+                                                    <th>服装名</th>
+                                                    <th>价格</th>
+                                                    <th>手机号</th>
+                                                    <th>预订时间</th>
+                                                    <th>地址</th>
+                                                    <th>订单状态</th>
+                                                    <th>操作</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for order_obj in order_objs %}
+                                                <tr>
+                                                    <td>{{ order_obj.cus_name }}</td>
+                                                    <td>{{ order_obj.clothName }}</td>
+                                                    <td>{{ order_obj.price }}</td>
+                                                    <td>{{ order_obj.phone }}</td>
+                                                    <td>{{ order_obj.rent_time }}</td>
+                                                    <td>{{ order_obj.address }}</td>
+                                                    <td>{{ order_obj.orderState }}</td>
+                                                    <form action='/user_cancel_order' method='get'>
+                                                        <td>
+                                                            <button id={{ order_obj.id }} name="delete_id" value={{
+                                                                    appointment.id
+                                                                    }} class="btn btn-danger" type='submit'>取消
+                                                            </button>
+                                                        </td>
+                                                    </form>
+                                                </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="panel-2">
+                        <div class="container">
+                            <div class="row clearfix">
+                                <div class="col-md-12 column">
+                                    <div class="panel panel-success">
+                                        <div class="panel-body">
+                                            <br>
+                                            <br>
+                                            <form class="form-horizontal" action="/user_update_info" role="form">
+                                                <div class="form-group">
+                                                    <label for="user_name_id" class="col-sm-4 control-label">用户名</label>
+                                                    <div class="col-sm-5">
+                                                        <input value="{{ username }}" name="username"
+                                                               class="form-control" id="user_name_id">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="user_email_id"
+                                                           class="col-sm-4 control-label">用户邮箱</label>
+                                                    <div class="col-sm-5">
+                                                        <input value="{{ email }}" name="email" readonly
+                                                               class="form-control" id="user_email_id">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="name_id"
+                                                           class="col-sm-4 control-label">姓名</label>
+                                                    <div class="col-sm-5">
+                                                        <input value="{{ name }}" name="name"
+                                                               class="form-control" id="name_id">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="user_phone_id"
+                                                           class="col-sm-4 control-label">手机号</label>
+                                                    <div class="col-sm-5">
+                                                        <input value="{{ phone }}" name="phone"
+                                                               class="form-control" id="user_phone_id">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="user_sex_id"
+                                                           class="col-sm-4 control-label">性别</label>
+                                                    <div class="col-sm-5">
+                                                        <select class="form-control" name="sex" id="user_sex_id" class="form-control">
+                                                            {% if sex == "男性" %}
+                                                            <option value="男性">男性</option>
+                                                            {% else %}
+                                                            <option value="女性">女性</option>
+                                                            {% endif %}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="user_address_id"
+                                                           class="col-sm-4 control-label">住址</label>
+                                                    <div class="col-sm-5">
+                                                        <input value="{{ address }}" name="address"
+                                                               class="form-control" id="user_address_id">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-sm-offset-6 col-sm-10">
+                                                        <button type="submit" class="btn btn-success">修改</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="panel-3">
+                        <div class="container">
+                            <div class="row clearfix">
+                                <div class="col-md-12 column">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-body">
+                                            <br>
+                                            <br>
+                                            <form class="form-horizontal" action="/user_change_password" role="form">
+                                                <div class="form-group">
+                                                    <label for="old_password_id"
+                                                           class="col-sm-4 control-label">旧密码</label>
+                                                    <div class="col-sm-5">
+                                                        <input type="password" class="form-control" id="old_password_id"
+                                                               name="old_password" placeholder="请输入旧密码">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="new_password_id"
+                                                           class="col-sm-4 control-label">新密码</label>
+                                                    <div class="col-sm-5">
+                                                        <input type="password" class="form-control" id="new_password_id"
+                                                               name="new_password" placeholder="请输入新密码">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="confirm_password_id"
+                                                           class="col-sm-4 control-label">确认密码</label>
+                                                    <div class="col-sm-5">
+                                                        <input type="password" class="form-control"
+                                                               id="confirm_password_id"
+                                                               name="confirm_password" placeholder="请确认密码">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-sm-offset-6 col-sm-5">
+                                                        <button type="submit" class="btn btn-info">修改</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="panel-4">
+                        <div class="container">
+                            <div class="row clearfix">
+                                <div class="col-md-12 column">
+                                    <div class="panel panel-warning">
+                                        <div class="panel-body">
+                                            <br>
+                                            <br>
+                                            <form class="form-horizontal" action="/user_feedback" role="form">
+                                                <div class="form-group">
+                                                    <label for="feedback_user_email_id"
+                                                           class="col-sm-4 control-label">用户邮箱</label>
+                                                    <div class="col-sm-5">
+                                                        <input value="{{ email }}" name="user_email" readonly
+                                                               class="form-control" id="feedback_user_email_id">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="feedback_user_email_id"
+                                                           class="col-sm-4 control-label">反馈内容</label>
+                                                    <div class="col-sm-5">
+                                                            <textarea name="user_content" id="feedback_user_content_id"
+                                                                      class="form-control" rows="4"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-sm-offset-6 col-sm-5">
+                                                        <button type="submit" class="btn btn-info">反馈</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

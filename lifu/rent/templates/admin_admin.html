@@ -1,0 +1,265 @@
+<!doctype html>
+<html>
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Amaze UI Admin index Examples</title>
+    <meta name="description" content="这是一个 index 页面">
+    <meta name="keywords" content="index">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="icon" type="image/png" href="{% static 'admin/assets/i/favicon.png' %}">
+    <link rel="apple-touch-icon-precomposed" href="{% static 'admin/assets/i/app-icon72x72@2x.png' %}">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+    <link rel="stylesheet" href="{% static 'admin/assets/css/amazeui.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'admin/assets/css/admin.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/assets/css/app.css' %}">
+    <script src="{% static 'admin/assets/js/echarts.min.js' %}"></script>
+    <link rel="shortcut icon" href="{% static 'love.ico' %}">
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<div class="modal fade" id="confModifyModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="close"><span
+                        aria-hidden="true">&times;</span>
+                </button>
+                <center><h4 class="modal-title" id="examplemodallabel">更新用户状态</h4></center>
+            </div>
+            <div class="modal-body">
+                <form role="form" method='get' action='/admin_update_order'>
+                    <div class="form-group">
+                        <label for="username_id" class="control-label">订单状态:</label>
+                        <textarea id="username_id" rows="1" class="form-control" name="username"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="username_id" class="control-label">姓名:</label>
+                        <textarea id="name_id" rows="1" class="form-control" name="name"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="email_id" class="control-label">邮箱:</label>
+                        <imput id="email_id" class="form-control" name="email" readonly></imput>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="submit" class="btn btn-primary">保存</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<body data-type="index">
+<header class="am-topbar am-topbar-inverse admin-header">
+    <div class="am-topbar-brand">
+        <a href="javascript:;" class="tpl-logo">
+            <img src="{% static 'admin/assets/img/logo.png' %}" alt="">
+        </a>
+    </div>
+    <div class="am-icon-list tpl-header-nav-hover-ico am-fl am-margin-right">
+
+    </div>
+
+    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
+            data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span
+            class="am-icon-bars"></span></button>
+
+    <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+
+        <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list tpl-header-list">
+            <li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen" class="tpl-header-list-link"><span
+                    class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>
+
+            <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
+                <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
+                    <span class="tpl-header-list-user-nick">欢迎当前用户 {{ username }}</span><span
+                        class="tpl-header-list-user-ico"> <img
+                        src="{% static 'admin/assets/img/user06.png' %}"></span>
+                </a>
+                <ul class="am-dropdown-content">
+                    <li><a href="/admin_user_info_view"><span class="am-icon-bell-o"></span>个人中心</a></li>
+                    <li><a href="/admin_change_password_view"><span class="am-icon-cog"></span>修改密码</a></li>
+                    <li><a href="/"><span class="am-icon-power-off"></span> 退出</a></li>
+                </ul>
+            </li>
+            <li><a href="/" class="tpl-header-list-link"><span
+                    class="am-icon-sign-out tpl-header-list-ico-out-size"></span></a></li>
+        </ul>
+    </div>
+</header>
+
+
+<div class="tpl-page-container tpl-page-header-fixed">
+    <div class="tpl-left-nav tpl-left-nav-hover">
+        <div class="tpl-left-nav-title">
+            功能列表
+        </div>
+        <div class="tpl-left-nav-list">
+            <ul class="tpl-left-nav-menu">
+                <li class="tpl-left-nav-item">
+                    <a href="/admin_index/{{username}}" class="nav-link active">
+                        <i class="am-icon-home"></i>
+                        <span>首页</span>
+                    </a>
+                </li>
+
+                <li class="tpl-left-nav-item">
+                    <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
+                        <i class="am-icon-table"></i>
+                        <span>用户管理</span>
+                        <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>
+                    </a>
+                    <ul class="tpl-left-nav-sub-menu">
+                        <li>
+                            <a href="/admin_user_view">
+                                <i class="am-icon-angle-right"></i>
+                                <span>普通用户</span>
+                            </a>
+                            <a href="/admin_admin_view">
+                                <i class="am-icon-angle-right"></i>
+                                <span>管理员</span>
+                                <i class="am-icon-star tpl-left-nav-content-ico am-fr am-margin-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="tpl-left-nav-item">
+                    <a href="/admin_order_view" class="nav-link tpl-left-nav-link-list">
+                        <i class="am-icon-bar-chart"></i>
+                        <span>用户订单</span>
+                        <i class="tpl-left-nav-content tpl-badge-danger">
+                            12
+                        </i>
+                    </a>
+                </li>
+                <li class="tpl-left-nav-item">
+                    <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
+                        <i class="am-icon-table"></i>
+                        <span>服装管理</span>
+                        <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>
+                    </a>
+                    <ul class="tpl-left-nav-sub-menu">
+                        <li>
+                            <a href="/admin_clothes_view">
+                                <i class="am-icon-angle-right"></i>
+                                <span>服装展示</span>
+                            </a>
+                            <a href="/admin_add_clothes_view">
+                                <i class="am-icon-angle-right"></i>
+                                <span>服装添加</span>
+                                <i class="am-icon-star tpl-left-nav-content-ico am-fr am-margin-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="tpl-left-nav-item">
+                    <a href="/admin_feedback_view" class="nav-link tpl-left-nav-link-list">
+                        <i class="am-icon-wpforms"></i>
+                        <span>意见反馈</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="tpl-content-wrapper">
+        <div class="tpl-content-page-title">
+            用户管理
+        </div>
+        <ol class="am-breadcrumb">
+            <li><a href="#" class="am-icon-home">首页</a></li>
+        </ol>
+        <div class="pl-content-scope">
+            <section class="am-panel am-panel-secondary">
+                <header class="am-panel-hd">
+                </header>
+                <div class="am-panel-bd">
+                    <center>
+                        <fieldset>
+                            <table class="am-table am-table-striped am-table-hover table-main">
+                                <thead>
+                                <tr>
+                                    <th class="table-id">ID</th>
+                                    <th class="table-title">用户名</th>
+                                    <th class="table-title">姓名</th>
+                                    <th class="table-type">邮箱</th>
+                                    <th class="table-type">操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for user_obj in user_objs %}
+                                <tr>
+                                    <td>{{ user_obj.id }}</td>
+                                    <td>{{ user_obj.username }}</td>
+                                    <td>{{ user_obj.name }}</td>
+                                    <td>{{ user_obj.email }}</td>
+                                    <td>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs">
+                                                <button
+                                                        class="am-btn am-btn-default am-btn-xs am-text-secondary modify-btn"
+                                                        data-target="#confModifyModal" data-toggle="modal"
+                                                        user_name="{{ user_obj.name }}"
+                                                        username="{{ user_obj.username }}" email="{{ user_obj.email }}">
+                                                    <span class="am-icon-pencil-square-o"></span> 编辑
+                                                </button>
+                                                <button id="{{ user_obj.id }}"
+                                                        class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only delete-btn">
+                                                    <span class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </fieldset>
+                    </center>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".delete-btn").on("click", function () {
+                var user_id = $(this).attr("id");
+                $.ajax({url: `/admin_delete_admin?id=${user_id}`, async: true});
+                window.location.replace("/admin_admin_view");
+            });
+        });
+
+        $(document).ready(function () {
+            $(".modify-btn").on("click", function () {
+                var username = $(this).attr("username");
+                var user_name = $(this).attr("user_name");
+                var email = $(this).attr("email");
+                $('#username_id').html(username);
+                $('#name_id').html(user_name);
+                $('#email_id').html(email);
+            });
+        });
+        $(document).ready(function () {
+            $(".add-btn").on("click", function () {
+                $('#confAddModal').modal('show');
+            });
+        });
+    </script>
+    <script src="{% static 'admin/assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'admin/assets/js/amazeui.min.js' %}"></script>
+    <script src="{% static 'admin/assets/js/iscroll.js' %}"></script>
+    <script src="{% static 'admin/assets/js/app.js' %}"></script>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</div>
+</body>
+
+</html>

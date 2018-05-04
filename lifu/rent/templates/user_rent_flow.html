@@ -1,0 +1,197 @@
+<!doctype html>
+<!-- 依照源GFashion网站为原型,以自己的的方式实现 -->
+<html>
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>礼服租赁系统</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'user_index/css/reset.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'user_index/css/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'user_index/css/font.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'user_index/css/vice-index.css'%}">
+</head>
+<body>
+<!-- 顶部条开始 -->
+<div class="headerTop">
+    <!-- 左侧 -->
+    <div class="container clearfix">
+        <div class="left">
+            <!-- 字体图标 -->
+            <div class="iconOuter ">
+                <div class="icon-quill iconInner"></div>
+            </div>
+            <div class="vistorCount">+444 (100) 1234</div>
+            <div class="openTime">(Mon- Fri: 09.00 - 21.00)</div>
+        </div>
+        <!-- 左侧结束 -->
+        <!-- 搜索框 -->
+        <!-- 搜索框 -->
+    </div>
+</div>
+<!-- 顶部条结束 -->
+
+<!-- 顶部logo+导航开始 -->
+<nav class="navWrapper">
+    <div class="navLogo">
+        <a href="#"><img src="{% static 'user_index/img/logo.png' %}" alt=""></a>
+    </div>
+    <!-- 账户相关 -->
+    <ul class="navAccount">
+        <li>
+            <ul>
+                {% if username == False %}
+                <!--功能没实现-->
+                <li><a id="login" href="/user_login_view">登录</a></li>
+                <li><a href="/user_register_view">注册</a></li>
+                {% else %}
+                <li><a id="welcome" href="javascript:;">欢迎您: {{ username }}</a></li>
+                <li><a href="/">退出</a></li>
+                {% endif %}
+            </ul>
+        </li>
+    </ul>
+    <!-- 登录login -->
+    <iframe src="" frameborder="0"></iframe>
+    <!-- /登录login -->
+
+    <!-- 导航菜单 -->
+    <div class="menu">
+        <ul>
+            <li><a href="/user_address">地址</a></li>
+            <li><a href="/user_rent_flow">租赁流程</a></li>
+            <li><a href="/user_info_view">个人信息</a></li>
+            <li><a href="/user_index/{{username}}">首页</a></li>
+        </ul>
+    </div>
+</nav>
+<div id="main">
+    <!-- 顶部logo+导航结束 -->
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                    </div>
+                    <div class="panel-body">
+                        <table border=0 cellspacing=0 cellpadding=0 width="90%" align="center">
+                            <Tr>
+                                <TD height="50" align="left" style="border-bottom:#919191 1px solid;">
+                                    <span style="font-size:17px; font-weight:bold; color:#6C6C6C; font-family:'微软雅黑';"><center>租 赁 流 程</center></span>
+                                </TD>
+                            </Tr>
+                        </table>
+
+                        <table border=0 cellspacing=0 cellpadding=0 width="90%" align="center">
+                            <Tr>
+                                <Td align="left" valign="top" style="line-height:24px;" height="300">
+                                    <p style="BACKGROUND: #919191"><strong><span
+                                            style="FONT-FAMILY: 宋体; COLOR: #333333; FONT-SIZE: 18pt; FONT-WEIGHT: normal; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial; mso-bidi-font-family: Arial">租赁演出服装流程</span></strong><span
+                                            style="FONT-FAMILY: Arial; COLOR: #333333; FONT-SIZE: 9pt" lang="EN-US">&nbsp;
+                                        <!--?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /--><o:p></o:p></span>
+                                    </p>
+                                    <p style="BACKGROUND: #919191"><span
+                                            style="FONT-FAMILY: Arial; COLOR: #333333; FONT-SIZE: 13.5pt" lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+                                            style="COLOR: #333333; FONT-SIZE: 13.5pt; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial; mso-bidi-font-family: Arial">首先感谢您选择西安星尚演出服装租赁，正是因为有这么多新老顾客的大力支持才见证了星尚演出服装租赁的成长。在此向亲爱的新老顾客们介绍一下演出服装的租赁流程：</span><span
+                                            style="FONT-FAMILY: Arial; COLOR: #333333; FONT-SIZE: 9pt" lang="EN-US"><o:p></o:p></span>
+                                    </p>
+                                    <p style="BACKGROUND: #919191"><span
+                                            style="FONT-FAMILY: Arial; COLOR: #333333; FONT-SIZE: 13.5pt" lang="EN-US">&nbsp;</span><span
+                                            style="FONT-FAMILY: Arial; COLOR: #333333; FONT-SIZE: 9pt" lang="EN-US"><o:p></o:p></span>
+                                    </p>
+                                    <p style="BACKGROUND: #919191"><span
+                                            style="COLOR: #333333; FONT-SIZE: 13.5pt; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial; mso-bidi-font-family: Arial">一</span><span
+                                            style="FONT-FAMILY: Arial; COLOR: #333333; FONT-SIZE: 13.5pt"> </span><strong><span
+                                            style="FONT-FAMILY: 宋体; COLOR: fuchsia; FONT-SIZE: 13.5pt; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial; mso-bidi-font-family: Arial">看服装</span></strong><span
+                                            style="FONT-FAMILY: Arial; COLOR: #333333; FONT-SIZE: 13.5pt" lang="EN-US"> &nbsp;</span><span
+                                            style="COLOR: #333333; FONT-SIZE: 13.5pt; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial; mso-bidi-font-family: Arial">当您看好的服装时请您记下服装编号，我们欢迎您来看服装的具体款式与试穿。</span><span
+                                            style="FONT-FAMILY: Arial; COLOR: #333333; FONT-SIZE: 9pt" lang="EN-US"><o:p></o:p></span>
+                                    </p>
+                                    <p style="BACKGROUND: #919191"><span
+                                            style="FONT-FAMILY: Arial; COLOR: #333333; FONT-SIZE: 13.5pt" lang="EN-US">&nbsp;</span><span
+                                            style="FONT-FAMILY: Arial; COLOR: #333333; FONT-SIZE: 9pt" lang="EN-US"><o:p></o:p></span>
+                                    </p>
+                                    <p style="BACKGROUND: #919191"><span
+                                            style="COLOR: #333333; FONT-SIZE: 13.5pt; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial; mso-bidi-font-family: Arial">二</span><span
+                                            style="FONT-FAMILY: Arial; COLOR: red; FONT-SIZE: 13.5pt"> </span><strong><span
+                                            style="FONT-FAMILY: 宋体; COLOR: fuchsia; FONT-SIZE: 13.5pt; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial; mso-bidi-font-family: Arial">定服装</span></strong><span
+                                            style="FONT-FAMILY: Arial; COLOR: #333333; FONT-SIZE: 13.5pt" lang="EN-US"> &nbsp;</span><span
+                                            style="COLOR: #333333; FONT-SIZE: 13.5pt; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial; mso-bidi-font-family: Arial">当您来试穿满意后，请交纳相应的定金。我们会为您在您预订时段预留服装。</span><span
+                                            style="FONT-FAMILY: Arial; COLOR: #333333; FONT-SIZE: 9pt" lang="EN-US"><o:p></o:p></span>
+                                    </p>
+                                    <p style="BACKGROUND: #919191"><span
+                                            style="FONT-FAMILY: Arial; COLOR: #333333; FONT-SIZE: 13.5pt" lang="EN-US">&nbsp;</span><span
+                                            style="FONT-FAMILY: Arial; COLOR: #333333; FONT-SIZE: 9pt" lang="EN-US"><o:p></o:p></span>
+                                    </p>
+                                    <p style="BACKGROUND: #919191"><span
+                                            style="FONT-FAMILY: Arial; COLOR: #333333; FONT-SIZE: 13.5pt"
+                                            lang="EN-US"></span><span
+                                            style="FONT-FAMILY: Arial; COLOR: #333333; FONT-SIZE: 9pt" lang="EN-US"><o:p></o:p></span>
+                                    </p>
+                                    <p style="BACKGROUND: #919191"><span
+                                            style="COLOR: #333333; FONT-SIZE: 13.5pt; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial; mso-bidi-font-family: Arial">三</span><span
+                                            style="FONT-FAMILY: Arial; COLOR: #333333; FONT-SIZE: 13.5pt"> </span><strong><span
+                                            style="FONT-FAMILY: 宋体; COLOR: fuchsia; FONT-SIZE: 13.5pt; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial; mso-bidi-font-family: Arial">取服装</span></strong><span
+                                            style="FONT-FAMILY: Arial; COLOR: #333333; FONT-SIZE: 13.5pt" lang="EN-US"> &nbsp;</span><span
+                                            style="COLOR: #333333; FONT-SIZE: 13.5pt; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial; mso-bidi-font-family: Arial">按照约定时间当您前来取服装时，清点好服装数量，请您务必带好定金收据，服装的租金，服装的押金，及本人证件办理相关租赁手续。</span><span
+                                            style="FONT-FAMILY: Arial; COLOR: #333333; FONT-SIZE: 9pt" lang="EN-US"><o:p></o:p></span>
+                                    </p>
+                                    <p style="BACKGROUND: #919191"><span
+                                            style="FONT-FAMILY: Arial; COLOR: #333333; FONT-SIZE: 13.5pt"
+                                            lang="EN-US"></span><span
+                                            style="FONT-FAMILY: Arial; COLOR: #333333; FONT-SIZE: 9pt" lang="EN-US"><o:p></o:p></span>
+                                    </p>
+                                    <p style="BACKGROUND: #919191"><span
+                                            style="FONT-FAMILY: Arial; COLOR: #333333; FONT-SIZE: 13.5pt" lang="EN-US">&nbsp;</span><span
+                                            style="FONT-FAMILY: Arial; COLOR: #333333; FONT-SIZE: 9pt" lang="EN-US"><o:p></o:p></span>
+                                    </p>
+                                    <p style="BACKGROUND: #919191"><span
+                                            style="COLOR: #333333; FONT-SIZE: 13.5pt; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial; mso-bidi-font-family: Arial">四</span><span
+                                            style="FONT-FAMILY: Arial; COLOR: #333333; FONT-SIZE: 13.5pt"> </span><strong><span
+                                            style="FONT-FAMILY: 宋体; COLOR: fuchsia; FONT-SIZE: 13.5pt; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial; mso-bidi-font-family: Arial">还服装</span></strong><span
+                                            style="FONT-FAMILY: Arial; COLOR: #333333; FONT-SIZE: 13.5pt" lang="EN-US">&nbsp; </span><span
+                                            style="COLOR: #333333; FONT-SIZE: 13.5pt; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial; mso-bidi-font-family: Arial">当您演出完毕归还服装时请您带好租金收据，清点好服装数量。按照约定的归还时间前来归还服装。我们清点服装（无损坏或丢失）后会退给您押金或证件。</span>
+                                    </p>
+                                    <p style="BACKGROUND: #919191"><span
+                                            style="COLOR: #333333; FONT-SIZE: 13.5pt; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial; mso-bidi-font-family: Arial"><font
+                                            face="宋体"></font></span>&nbsp;</p>
+                                    <p style="BACKGROUND: #919191"><span
+                                            style="COLOR: #333333; FONT-SIZE: 13.5pt; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial; mso-bidi-font-family: Arial"><font
+                                            face="宋体">五 <font
+                                            color="#ff00ff"><strong>网上预订：</strong></font></font></span></p>
+                                    <p style="BACKGROUND: #919191"><span
+                                            style="COLOR: #333333; FONT-SIZE: 13.5pt; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial; mso-bidi-font-family: Arial"><font
+                                            face="宋体"></font></span>&nbsp;</p>
+                                    <p style="BACKGROUND: #919191"><span
+                                            style="COLOR: #333333; FONT-SIZE: 13.5pt; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial; mso-bidi-font-family: Arial"><font
+                                            face="宋体"><font face="宋体">账号：6227 0042 2178 0157 906 建行（刘伟康）西大街支行<br>&nbsp; &nbsp; &nbsp; 6228 4802 1804 2847 572 &nbsp;农行（刘伟康）鼓楼支行<br>&nbsp; &nbsp; &nbsp; 6215 5937 0000 1599 386 工商（刘伟康）西大街支行</font>&nbsp;&nbsp;&nbsp;<font
+                                            face="宋体">&nbsp;&nbsp;&nbsp;</font></font></span></p>
+                                    <p style="BACKGROUND: #919191"><span
+                                            style="COLOR: #333333; FONT-SIZE: 13.5pt; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial; mso-bidi-font-family: Arial"><font
+                                            face="宋体"><font
+                                            face="宋体">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></font></span><span
+                                            style="COLOR: #333333; FONT-SIZE: 13.5pt; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial; mso-bidi-font-family: Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+                                            style="COLOR: #333333; FONT-SIZE: 13.5pt; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial; mso-bidi-font-family: Arial">支付宝账号：18089207339</span>
+                                    </p>
+                                    <p style="BACKGROUND: #919191"><span
+                                            style="COLOR: #333333; FONT-SIZE: 13.5pt; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial; mso-bidi-font-family: Arial">提示：转账 打款须知请与负责人确认（定金、租金、押金）的金额与您所选的服装分类编号，确认下单回执。</span>
+                                    </p>
+                                    <p style="BACKGROUND: #919191"><span
+                                            style="COLOR: #333333; FONT-SIZE: 13.5pt; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial; mso-bidi-font-family: Arial">&nbsp;</span>
+                                    </p>
+                                </Td>
+                            </Tr>
+                        </table>
+                        <!--商品展示-->
+
+                        </TD>
+                        </tr>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
