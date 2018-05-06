@@ -187,9 +187,7 @@
                                                     <td>{{ order_obj.orderState }}</td>
                                                     <form action='/user_cancel_order' method='get'>
                                                         <td>
-                                                            <button id={{ order_obj.id }} name="delete_id" value={{
-                                                                    appointment.id
-                                                                    }} class="btn btn-danger" type='submit'>取消
+                                                            <button id={{ order_obj.id }} name="delete_id" value={{ order_obj.id }} class="btn btn-danger" type='submit'>取消
                                                             </button>
                                                         </td>
                                                     </form>

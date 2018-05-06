@@ -33,13 +33,9 @@ def user_login(request):
     elif str(password) == customer_obj.password and str(customer_obj.sign) == "1":
         return HttpResponseRedirect("/admin_index/%s" % (customer_obj.username))
     else:
-        return HttpResponseRedirect("/")
+        return HttpResponseRedirect("/user_login")
 
 def user_register_view(request):
-    name = request.GET.get("name")
-    email = request.GET.get("email")
-    password = request.GET.get("password")
-    User.objects.create(username=name, email=email, password=password)
     return render_to_response("user_register.html")
 
 def user_register(request):
@@ -77,8 +73,8 @@ def user_update_order(request):
 
 def user_cancel_order(request):
     # 逻辑 删除订单表用户对应的数据，并且cloth表对应的服装加1
-    user_obj = User.objects.get(username=login_user_name)
-    Order.objects.filter(email=user_obj.email).delete()
+    cloth_id = request.GET.get("delete_id")
+    Order.objects.filter(id=cloth_id).delete()
     return HttpResponseRedirect("/user_info_view")
 
 def user_change_password(request):
